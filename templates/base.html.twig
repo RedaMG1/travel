@@ -1,18 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-            {{ ux_controller_link_tags() }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ ux_controller_link_tags() }}
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="{{ asset('assets/lib/bootstrap-4.4.1-dist/css/bootstrap.min.css') }}"/>
+			<link rel="stylesheet" href="{{ asset('assets/libProject/style.css') }}"/>
+			<link href="{{ asset('assets/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		{% endblock %}
+	</head>
+	<body class="bg-light">
+		<nav
+			class="navbar navbar-expand-md navbar-dark fixed-top">
+			<!-- Brand -->
+			<a class="navbar-brand" href="{{ path('home')}}">Fit Flare</a>
 
-        {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+			<!-- Toggler/collapsible Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+				<ul class="navbar-nav ">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('home') }}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">Program</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">Stats</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">Social</a>
+					</li>
+
+					{# {% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link" href="">Admin tools</a>
+						</li>
+					{% endif %} #}
+					<!-- Dropdown -->
+					{% if app.user %}
+						<li class="nav-item dropdown ml-auto">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+								{{ app.user.username }}
+							</a>
+							<div class="dropdown-menu" style="background-color: #ffffff;">
+								<a class="dropdown-item" href="" style="color: black;">Profile</a>
+								<a class="dropdown-item" href="" style="color: black;">Account</a>
+								<a class="dropdown-item" href="{{ path('app_logout')}}" style="color: black;">Logout</a>
+							</div>
+						</li>
+					{% endif %}
+					<li
+						class="nav-item">
+						{#    si un utilisateur existe (et est donc connecté)    #}
+						{% if app.user %}
+							<li></li>
+						{% else %}
+							<li>
+								<a class="nav-link" href="{{ path('app_login')}}">Login</a>
+							</li>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+		</nav><br><br><br>
+		<div class="container-fluid body-marginTop "> {% block body %}{% endblock %}
+			</div>
+			<!-- footer section -->
+			
+			{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			{% endblock %}
+		</body>
+	</html>
