@@ -5,7 +5,7 @@
 
 {% block body %}
 	{{ parent() }}
-	<div class="background-section">
+	<div class="background-section" style = "background-image : url('{{ asset('assets/images/bg_1.jpg') }}')">
 		<h1>Welcome to our Travel Agency</h1>
 		<h3>Discover Your Dream Destinations</h3>
 		<div class="container filter-container">
@@ -64,24 +64,25 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 text-center mb-5">
-					<h3>Discover the Latest and Most Popular Destinations</h3>
+				<div class="col-md-12 mb-5">
+					<h4>Discover the Latest and Most Popular Destinations</h4>
 				</div>
 			</div>
-			<div class="row">
+			{# <div class="row">
 				<div class="col-md-12 text-center mb-5">
 					<p class="small">Explore our trending destinations and plan your next adventure.</p>
 				</div>
-			</div>
+			</div> #}
 			<div
 				class="row">
 				<!-- Add destination blocks here -->
+				{% for key, tour in tours %}
 				<div class="col-md-4">
 					<div class="destination-block">
-						<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Destination 1">
+						<img src="{{ asset('assets/images/' ~ tour.image) }}" alt=""/>
 						<div class="d-flex justify-content-between align-items-center mb-1 mt-4">
-							<h5 class="mb-0 text-primary">Marrakech</h5>
-							<h5 class="mb-0">2 Days</h5>
+							<h5 class="mb-0 text-primary">{{ tour.name }}</h5>
+							<h5 class="mb-0">{{ tour.day }} days</h5>
 						</div>
 						<p class="rate mb-1">
 							<i class="icon-star text-warning">*</i>
@@ -90,13 +91,14 @@
 							<i class="icon-star text-warning">*</i>
 							<i class="icon-star text-warning">*</i>
 						</p>
-						<p class="description mb-1">Description of Destination 1.</p>
+						<p class="description mb-1">{{ tour.description }}</p>
 						<div class="d-flex justify-content-between align-items-center">
 							<a class="mb-0 text-primary" href="#">Read more</a>
-							<p class="mb-0 text-success">$150</p>
+							<p class="mb-0 text-success">${{ tour.price }}</p>
 						</div>
 					</div>
 				</div>
+				{% endfor %}
 				<!-- Add more destination blocks as needed -->
 			</div>
 
@@ -194,7 +196,7 @@
 	}
 
 	.background-section {
-		background-image: url('{{ asset('assets/images/bg_1.jpg') }}');
+		/*background-image: url('{{ asset('assets/images/bg_1.jpg') }}');*/
 		background-size: cover;
 		color: #fff; /* Set text color to be readable on the background image */
 		text-align: center;

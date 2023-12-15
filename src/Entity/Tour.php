@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TourRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +36,13 @@ class Tour
     #[ORM\Column(nullable: true)]
     private ?bool $online = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $created_at = null;
+
+    public function __construct()
+    {
+        $this->created_at = new DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +128,18 @@ class Tour
     public function setOnline(?bool $online): static
     {
         $this->online = $online;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): static
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
