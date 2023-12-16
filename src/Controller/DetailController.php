@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\GalleryRepository;
 use App\Repository\TourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,15 @@ class DetailController extends AbstractController
     }
 
         #[Route('/detail/{id}', name: 'detail_display')]
-        public function display(TourRepository $tourRepository,$id): Response
+        public function display(TourRepository $tourRepository,$id,
+        GalleryRepository $galleryRepository): Response
         {
             $tours = $tourRepository->findBy(['id'=>$id]);
+            $gallerys = $galleryRepository->findBy(['tour'=>$id]);
 
             return $this->render('detail/index.html.twig', [
                 'tours' => $tours,
+                'gallerys' => $gallerys,
             ]);
         }
 }

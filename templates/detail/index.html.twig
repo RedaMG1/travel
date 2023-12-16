@@ -29,21 +29,16 @@
 				<h2>Gallery</h2>
 				<div id="imageCarousel" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<a href="#" class="image-link" data-image="{{ asset('assets/images/' ~ 'destination-2.jpg') }}">
-								<img src="{{ asset('assets/images/' ~ 'destination-2.jpg') }}" alt="Image 1" class="img-fluid">
-							</a>
-						</div>
-						<div class="carousel-item">
-							<a href="#" class="image-link" data-image="{{ asset('assets/images/' ~ 'destination-4.jpg') }}">
-								<img src="{{ asset('assets/images/' ~ 'destination-4.jpg') }}" alt="Image 2" class="img-fluid">
-							</a>
-						</div>
-						<div class="carousel-item">
-							<a href="#" class="image-link" data-image="{{ asset('assets/images/' ~ 'destination-6.jpg') }}">
-								<img src="{{ asset('assets/images/' ~ 'destination-6.jpg') }}" alt="Image 3" class="img-fluid">
-							</a>
-						</div>
+
+
+						{% for key, gallery in gallerys %}
+							<div class="carousel-item {% if loop.first %}active{% endif %}">
+								<a href="#" class="image-link" data-image="{{ asset('assets/images/' ~ gallery.image) }}">
+									<img src="{{ asset('assets/images/' ~ gallery.image) }}" alt="Image {{ loop.index }}" class="img-fluid">
+								</a>
+							</div>
+						{% endfor %}
+
 						<!-- Add more carousel items as needed -->
 					</div>
 					<a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
@@ -185,5 +180,11 @@ $('#imageModal').modal('show');
 		button[type="submit"]:hover {
 			background-color: #3558c9; /* Darker Royal Blue on hover */
 		}
+
+		.carousel-item img {
+        height: 400px; /* Set a fixed height for all images */
+        object-fit: cover; /* Ensure that the image covers the specified dimensions */
+        width: 100%; /* Ensure the width takes up the full container */
+    }
 	</style>
 {% endblock %}

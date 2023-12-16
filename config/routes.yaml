@@ -24,3 +24,6 @@ tour:
     path: /tour
     controller: App\Controller\TourController::index
 
+adminGallery:
+    path: /adminGallery
+    controller: App\Controller\GalleryController::adminIndex

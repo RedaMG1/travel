@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tools
+{% endblock %}
+
+{% block body %}
+
+	<div class="col-lg-12  contenu-blanc shadow-lg">
+
+		<h1>Tools</h1>
+		<table class="table table-striped table-advance table-hover">
+			<thead>
+				<tr class="bg-entete">
+					<th class="col-md-1">Id</th>
+					<th class="col-md-1">Tour</th>
+					<th class="col-md-1">Image</th>
+
+
+					<th class="col-md-6">Actions<span class="pull-right">
+							<a href="{{ path('create_gallery')}}" class="btn btn-primary btn-sm">
+								<i class="fa fa-save"></i>
+								Add a new Gallerys</a>
+						</span>
+					</th>
+
+				</tr>
+				{% if button is defined %}
+					<button type="submit" class="btn btn-primary">
+						{{ button }}
+					</button>
+				{% endif %}
+				<div class="container-fluid contenu">
+					{% if not gallerys.items is same as ([]) %}
+						{#in case theres no data yet#}
+						There is
+						{{ gallerys.getTotalItemCount }}
+						Gallerys!!
+
+
+					</thead>
+					<br>
+					{% for flash_message in app.flashes('success') %}
+						<div class="alert alert-success">
+							{{ flash_message }}
+						</div>
+					{% endfor %}
+					<tbody>
+
+						{% for key, gallery in gallerys %}
+							<tr>
+								<td>{{ gallery.id }}</td>
+								<td>{{ gallery.tour.name }}</td>
+								<td>{{ gallery.image }}</td>
+								{# <td class="col-md-3">
+									<div class="description-cell">
+										<div class="description-preview">{{ gallery.description|slice(0, 100) }}</div>
+										{% if gallery.description|length > 100 %}
+											<div class="description-full" style="display: none;">{{ gallery.description }}</div>
+										{% endif %}
+									</div>
+								</td> #}
+
+								<td
+									class="row">
+
+									<!-- formulaire pour demander la modification ou la suppression -->
+									<form>
+
+										<button type="submit" class="btn btn-primary btn-sm" formaction="{{path('edit_gallery',{id:gallery.id})}}" title="Edit">
+											<i title="Edit">
+												<i class="fa fa-pencil"></i>
+												Edit</button>
+
+
+											<button type="submit" class="btn btn-danger btn-sm" formaction="{{path('delete_gallery',{id:gallery.id})}}" title="Supprimer" onclick="return confirm('Do you really want to delete this gallery ?');">
+												<i class="fa fa-trash-o "></i>
+												delete</button>
+
+											<input
+											type="hidden" name="_token" value="{{ csrf_token('action-item' ~ gallery.id) }}">
+										{#  ~     pour concaténer des chaines en twig #}
+										</form>
+									</td>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+
+				</table>
+				<div class="d-flex justify-content-center">
+					{{ knp_pagination_render(gallerys) }}
+				</div>
+			{% else %}
+				there is no gallerys yet
+			{% endif %}
+		</div>
+		<style>
+			.description-cell {
+				position: relative;
+			}
+
+			.description-preview {
+				max-height: 100px; /* Set a maximum height for the preview */
+				overflow: scroll;
+			}
+
+			.read-more-btn {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				background: transparent;
+				border: none;
+				cursor: pointer;
+				color: blue; /* Adjust the color as needed */
+			}
+
+			.description-full {
+				display: none;
+			}
+		</style>
+
+
+	</div>
+{% endblock %}

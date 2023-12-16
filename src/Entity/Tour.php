@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\TourRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,9 +41,13 @@ class Tour
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
+    #[ORM\OneToMany(mappedBy: 'tour', targetEntity: Gallery::class)]
+    private Collection $galleries;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
+        $this->galleries = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -140,6 +146,36 @@ class Tour
     public function setCreatedAt(\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): static
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries->add($gallery);
+            $gallery->setTour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): static
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getTour() === $this) {
+                $gallery->setTour(null);
+            }
+        }
 
         return $this;
     }

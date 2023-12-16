@@ -75,7 +75,7 @@ class TourType extends AbstractType
                 'attr' => [
                     'class' => 'movebtn movebtnsu'
                 ],
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
