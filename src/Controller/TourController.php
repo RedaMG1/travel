@@ -17,10 +17,11 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class TourController extends AbstractController
 {
     #[Route('/tour', name: 'app_tour')]
-    public function index(): Response
+    public function index(TourRepository $tourRepository): Response
     {
+        $tours = $tourRepository->findBy(['online'=>1]);
         return $this->render('tour/index.html.twig', [
-            'controller_name' => 'TourController',
+            'tours' => $tours,
         ]);
     }
 
@@ -99,7 +100,7 @@ class TourController extends AbstractController
             $manager->persist($tour);
             $manager->flush();
             // dd($form->getData($product));
-            $this->addFlash('success', 'the tour is edited successfully!');
+            $this->addFlash('success', 'the tour '.$id.' is edited successfully!');
             return $this->redirectToRoute('adminTour');
         }
         return $this->render('tour/admin/edit.html.twig', [

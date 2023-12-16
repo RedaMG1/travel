@@ -15,7 +15,17 @@ class HomeController extends AbstractController
         $tours = $tourRepository->findBy(['online'=>1]);
         return $this->render('home/index.html.twig', [
             'tours'=>$tours,
-            'controller_name' => 'HomeController',
+         
+        ]);
+    }
+
+    #[Route('/filter/{name}', name: 'tour_filter')]
+    public function filter(TourRepository $tourRepository,string $name): Response
+    {
+        $tours = $tourRepository->findByName($name);
+        return $this->render('home/filter.html.twig', [
+            'tours'=>$tours,
+           
         ]);
     }
 }

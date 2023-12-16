@@ -3,18 +3,86 @@
 {% block title %}Hello TourController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <body>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container mt-5">
+        <!-- Section 1 -->
+        <div class="text-center mb-5">
+            <h2 style="color: blue;">Discover Marrakech</h2>
+            <p>The best Marrakech destinations to visit</p>
+        </div><br>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/wamp64/www/symfony/travel/project/src/Controller/TourController.php'|file_link(0) }}">src/Controller/TourController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/wamp64/www/symfony/travel/project/templates/tour/index.html.twig'|file_link(0) }}">templates/tour/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <!-- Section 2 -->
+        <div class="mb-5">
+            <h2 style="color: blue;">Marrakech trips</h2>
+            <p>faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+        </div><br>
+
+        <!-- Section 3 -->
+        <div class="text-center mb-4">
+            <h2 style="color: blue;">Here's our best Marrakech tours</h2>
+            <div class="container">
+                <div class="row">
+                    {% for key, tour in tours %}
+                        <div class="col-md-4">
+                            <div class="blocks-destination-block d-flex flex-column">
+                                <img src="{{ asset('assets/images/' ~ tour.image) }}" alt="Tour Image" class="img-fluid">
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <h5 class="mb-0 text-primary">{{ tour.name }}</h5>
+                                    <h5 class="mb-0">{{ tour.day }} days</h5>
+                                </div>
+                                <p class="rate mb-1">
+                                    <i class="icon-star text-warning">*</i>
+                                    <i class="icon-star text-warning">*</i>
+                                    <i class="icon-star text-warning">*</i>
+                                    <i class="icon-star text-warning">*</i>
+                                    <i class="icon-star text-warning">*</i>
+                                </p>
+                                <p class="description mb-1">{{ tour.description }}</p>
+                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <a class="mb-0 text-primary" href="#">Read more</a>
+                                    <p class="mb-0 text-success">${{ tour.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Add custom styles for the third section */
+        .text-center h2,
+        .text-center h5 {
+            color: blue;
+        }
+
+       
+
+        .blocks-destination-block {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            height: 100%; /* Set a fixed height for consistency */
+        }
+
+        .blocks-destination-block img {
+            max-width: 100%;
+            border-radius: 8px;
+            height: 250px; /* Adjust height as needed */
+            object-fit: cover; /* Maintain aspect ratio for images */
+        }
+
+        .description {
+            max-height: 80px; /* Adjust max-height as needed */
+            overflow: hidden;
+        }
+    </style>
+    </body>
 {% endblock %}

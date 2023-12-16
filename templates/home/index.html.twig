@@ -5,11 +5,11 @@
 
 {% block body %}
 	{{ parent() }}
-	<div class="background-section" style = "background-image : url('{{ asset('assets/images/bg_1.jpg') }}')">
+	<div class="background-section" style="background-image : url('{{ asset('assets/images/bg_1.jpg') }}')">
 		<h1>Welcome to our Travel Agency</h1>
-		<h3>Discover Your Dream Destinations</h3>
+		<h3>Discover Your Dream Destinations</h3><br>
 		<div class="container filter-container">
-			<form>
+			<form id="filterForm">
 				<div class="form-row">
 					<div class="form-group col-md-4">
 						<label for="destination">Destination</label>
@@ -24,13 +24,12 @@
 						<input type="number" class="form-control" id="maxPrice" name="maxPrice">
 					</div>
 					<div class="form-group col-md-2 mt-4">
-
-						<button type="submit" class="btn btn-primary">Search</button>
+						<button type="submit" class="btn btn-primary" id="searchButton">Search</button>
 					</div>
 				</div>
-
 			</form>
 		</div>
+
 	</div>
 	<div class="second-section">
 		<div class="container">
@@ -56,221 +55,243 @@
 			</div>
 		</div>
 	</div>
-	<div class="third-section">
+	<!-- Section 3 -->
+	<div class="text-center mb-4">
+		<h2 style="color: blue;">Here's our best Marrakech tours</h2>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-center mb-5">
-					<h1>Trending Destinations</h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 mb-5">
-					<h4>Discover the Latest and Most Popular Destinations</h4>
-				</div>
-			</div>
-			{# <div class="row">
-				<div class="col-md-12 text-center mb-5">
-					<p class="small">Explore our trending destinations and plan your next adventure.</p>
-				</div>
-			</div> #}
-			<div
-				class="row">
-				<!-- Add destination blocks here -->
 				{% for key, tour in tours %}
-				<div class="col-md-4">
-					<div class="destination-block">
-						<img src="{{ asset('assets/images/' ~ tour.image) }}" alt=""/>
-						<div class="d-flex justify-content-between align-items-center mb-1 mt-4">
-							<h5 class="mb-0 text-primary">{{ tour.name }}</h5>
-							<h5 class="mb-0">{{ tour.day }} days</h5>
-						</div>
-						<p class="rate mb-1">
-							<i class="icon-star text-warning">*</i>
-							<i class="icon-star text-warning">*</i>
-							<i class="icon-star text-warning">*</i>
-							<i class="icon-star text-warning">*</i>
-							<i class="icon-star text-warning">*</i>
-						</p>
-						<p class="description mb-1">{{ tour.description }}</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<a class="mb-0 text-primary" href="#">Read more</a>
-							<p class="mb-0 text-success">${{ tour.price }}</p>
+					<div class="col-md-4">
+						<div class="blocks-destination-block d-flex flex-column">
+							<img src="{{ asset('assets/images/' ~ tour.image) }}" alt="Tour Image" class="img-fluid">
+							<div class="d-flex justify-content-between align-items-center mt-4">
+								<h5 class="mb-0 text-primary">{{ tour.name }}</h5>
+								<h5 class="mb-0">{{ tour.day }}
+									days</h5>
+							</div>
+							<p class="rate mb-1">
+								<i class="icon-star text-warning">*</i>
+								<i class="icon-star text-warning">*</i>
+								<i class="icon-star text-warning">*</i>
+								<i class="icon-star text-warning">*</i>
+								<i class="icon-star text-warning">*</i>
+							</p>
+							<p class="description mb-1">{{ tour.description }}</p>
+							<div class="mt-auto d-flex justify-content-between align-items-center">
+								<a class="mb-0 text-primary" href="#">Read more</a>
+								<p class="mb-0 text-success">${{ tour.price }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
 				{% endfor %}
-				<!-- Add more destination blocks as needed -->
+			</div>
+		</div>
+	</div>
+</div>
+{# top destinations section -*---------------- #}
+<div class="top-destinations-section">
+	<h1 class="text-center mb-4">Top Destinations</h1>
+	<p class="text-center mb-4">Top destinations to start your Morocco Tour
+	</p>
+
+
+	<div class="container">
+		<div
+			class="row">
+			<!-- Destination Block 1 -->
+			<div class="col-md-6">
+				<div class="destination-block">
+					<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Top Destination 1">
+
+				</div>
 			</div>
 
+			<!-- Destination Block 2 -->
+			<div class="col-md-6">
+				<div class="destination-block">
 
-			<!-- Add more destination blocks as needed -->
+					<p class="text-center mb-2">
+						<strong>Fes</strong>
+					</p>
+					<p class="text-center mb-4">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+					</p><br>
+					<p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte</p>
+				</div>
+				<a href="#" class="btn btn-primary btn-block">Find Out More</a>
+			</div>
 		</div>
-
 	</div>
-	<div class="top-destinations-section">
-		<h1 class="text-center mb-4">Top Destinations</h1>
-		<p class="text-center mb-4">Top destinations to start your Morocco Tour
+</div>
+<div class="gallery-section bg-light py-5">
+	<div class="container">
+		<h1 class="text-center mb-4">Gallery</h1>
+		<p class="lead text-center mb-4">
+			Explore the beauty through our gallery. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 		</p>
 
+		<div
+			class="row">
+			<!-- Gallery Image 1 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/image_1.jpg') }}" alt="Gallery Image 1" class="img-fluid">
+			</div>
 
-		<div class="container">
-			<div
-				class="row">
-				<!-- Destination Block 1 -->
-				<div class="col-md-6">
-					<div class="destination-block">
-						<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Top Destination 1">
+			<!-- Gallery Image 2 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-2.jpg') }}" alt="Gallery Image 2" class="img-fluid">
+			</div>
 
-					</div>
-				</div>
+			<!-- Gallery Image 3 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-4.jpg') }}" alt="Gallery Image 3" class="img-fluid">
+			</div>
 
-				<!-- Destination Block 2 -->
-				<div class="col-md-6">
-					<div class="destination-block">
+			<!-- Gallery Image 4 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-6.jpg') }}" alt="Gallery Image 4" class="img-fluid">
+			</div>
+		</div>
+		<div
+			class="row">
+			<!-- Gallery Image 1 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/image_1.jpg') }}" alt="Gallery Image 1" class="img-fluid">
+			</div>
 
-						<p class="text-center mb-2">
-							<strong>Fes</strong>
-						</p>
-						<p class="text-center mb-4">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
-						</p><br>
-						<p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte</p>
-					</div>
-					<a href="#" class="btn btn-primary btn-block">Find Out More</a>
-				</div>
+			<!-- Gallery Image 2 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-2.jpg') }}" alt="Gallery Image 2" class="img-fluid">
+			</div>
+
+			<!-- Gallery Image 3 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-4.jpg') }}" alt="Gallery Image 3" class="img-fluid">
+			</div>
+
+			<!-- Gallery Image 4 -->
+			<div class="col-md-3 mb-4 gallery-item show">
+				<img src="{{ asset('assets/images/destination-6.jpg') }}" alt="Gallery Image 4" class="img-fluid">
 			</div>
 		</div>
 	</div>
-	<div class="gallery-section bg-light py-5">
-		<div class="container">
-			<h1 class="text-center mb-4">Gallery</h1>
-			<p class="lead text-center mb-4">
-				Explore the beauty through our gallery. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			</p>
-
-			<div
-				class="row">
-				<!-- Gallery Image 1 -->
-				<div class="col-md-3 mb-4 gallery-item show">
-					<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Gallery Image 1" class="img-fluid">
-				</div>
-
-				<!-- Gallery Image 2 -->
-				<div class="col-md-3 mb-4 gallery-item show">
-					<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Gallery Image 2" class="img-fluid">
-				</div>
-
-				<!-- Gallery Image 3 -->
-				<div class="col-md-3 mb-4 gallery-item show">
-					<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Gallery Image 3" class="img-fluid">
-				</div>
-
-				<!-- Gallery Image 4 -->
-				<div class="col-md-3 mb-4 gallery-item show">
-					<img src="{{ asset('assets/images/destination-1.jpg') }}" alt="Gallery Image 4" class="img-fluid">
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="about-us-section bg-light p-5">
-		<div class="container">
-			<h1 class="text-center mb-4">About Us</h1>
-			<p class="lead text-center mb-4">
-				Welcome to our travel agency. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod accumsan ligula,tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
-																								            sit amet tempus velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm . velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
-			</p>
-		</div>
-	</div>
-
-
 </div>
 
-<style>
-	/* Add custom styles for the background image section */
-	body,
-	html {
-		margin: 0;
-		padding: 0;
-		height: 100%;
-	}
 
-	.background-section {
-		/*background-image: url('{{ asset('assets/images/bg_1.jpg') }}');*/
-		background-size: cover;
-		color: #fff; /* Set text color to be readable on the background image */
-		text-align: center;
-		padding: 200px 0; /* Adjust padding as needed */
-		height: 100vh; /* Set the height to 100% of the viewport height */
-		margin: 0; /* Remove margin to cover the entire space */
-	}
+<div class="about-us-section bg-light p-5">
+	<div class="container">
+		<h1 class="text-center mb-4">About Us</h1>
+		<p class="lead text-center mb-4">
+			Welcome to our travel agency. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod accumsan ligula,tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
+																																																														            sit amet tempus velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm . velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
+		</p>
+	</div>
+</div></div><style>
+/* Add custom styles for the background image section */
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
 
-	.filter-container {
-		/* Add styles for your filter container */
-		/* Example styles: */
-		background-color: rgb(89 79 224 / 80%);
-		padding: 20px;
-		border-radius: 10px;
-		margin-top: 20px;
-	}
-	/* Add custom styles for the second section */
-	.second-section {
-		background-color: #fff; /* Set background color as needed */
-		padding: 50px 0; /* Adjust padding as needed */
-	}
+.background-section {
+	/*background-image: url('{{ asset('assets/images/bg_1.jpg') }}');*/
+	background-size: cover;
+	color: #fff; /* Set text color to be readable on the background image */
+	text-align: center;
+	padding: 200px 0; /* Adjust padding as needed */
+	height: 100vh; /* Set the height to 100% of the viewport height */
+	margin: 0; /* Remove margin to cover the entire space */
+}
 
-	.text-block {
-		/* Add styles for the text block */
-		color: #333; /* Set text color */
-	}
+.filter-container {
+	/* Add styles for your filter container */
+	/* Example styles: */
+	background-color: rgb(89 79 224 / 80%);
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+/* Add custom styles for the second section */
+.second-section {
+	background-color: #fff; /* Set background color as needed */
+	padding: 50px 0; /* Adjust padding as needed */
+}
 
-	.search-bar-block {
-		/* Add styles for the search bar block */
-		text-align: center;
-		margin-top: 20px;
-	}
+.text-block {
+	/* Add styles for the text block */
+	color: #333; /* Set text color */
+}
 
-	.search-bar-block input {
-		/* Add styles for the search bar input */
-		width: 70%;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-	}
+.search-bar-block {
+	/* Add styles for the search bar block */
+	text-align: center;
+	margin-top: 20px;
+}
 
-	.search-bar-block button {
-		/* Add styles for the search bar button */
-		padding: 10px 20px;
-		margin-left: 10px;
-	}
-	/* Add custom styles for the third section */
-	.third-section {
-		background-color: #f8f9fa; /* Set background color as needed */
-		padding: 50px 0; /* Adjust padding as needed */
-	}
+.search-bar-block input {
+	/* Add styles for the search bar input */
+	width: 70%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
 
-	.third-section h1,
-	.third-section h3,
-	.third-section p {
-		color: #333; /* Set text color */
-	}
+.search-bar-block button {
+	/* Add styles for the search bar button */
+	padding: 10px 20px;
+	margin-left: 10px;
+}
+/* Add custom styles for the third section */
+.third-section {
+	background-color: #f8f9fa; /* Set background color as needed */
+	padding: 50px 0; /* Adjust padding as needed */
+}
 
-	.destination-block {
-		border: 1px solid #ddd; /* Add border for each destination block */
-		padding: 15px;
-		margin-bottom: 20px;
+.third-section h1,
+.third-section h3,
+.third-section p {
+	color: #333; /* Set text color */
+}
 
-	}
-	.destination-block .rate {
-		text-align: center;
+.destination-block {
+	border: 1px solid #ddd; /* Add border for each destination block */
+	padding: 15px;
+	margin-bottom: 20px;
 
-	}
-	.destination-block img {
-		max-width: 100%; /* Make sure images don't exceed their container */
-		border-radius: 8px; /* Add rounded corners to images */
-	}
+}
+.destination-block .rate {
+	text-align: center;
 
-	.destination-block h4 {
-		margin-top: 10px;
-	}
-</style>{% endblock %}
+}
+.destination-block img {
+	max-width: 100%; /* Make sure images don't exceed their container */
+	border-radius: 8px; /* Add rounded corners to images */
+}
+
+.destination-block h4 {
+	margin-top: 10px;
+}
+.blocks-destination-block {
+	border: 1px solid #ddd;
+	padding: 15px;
+	margin-bottom: 20px;
+	height: 100%; /* Set a fixed height for consistency */
+}
+
+.blocks-destination-block img {
+	max-width: 100%;
+	border-radius: 8px;
+	height: 250px; /* Adjust height as needed */
+	object-fit: cover; /* Maintain aspect ratio for images */
+}</style><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script><script>
+$(document).ready(function () {
+$('#filterForm').submit(function (e) {
+e.preventDefault();
+var destinationValue = $('#destination').val();
+var formAction = "{{ path('tour_filter', { name: 'PLACEHOLDER' }) }}";
+formAction = formAction.replace('PLACEHOLDER', destinationValue);
+$('#filterForm').attr('action', formAction);
+$('#filterForm').unbind('submit').submit();
+});
+});</script>{% endblock %}

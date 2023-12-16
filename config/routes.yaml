@@ -19,3 +19,7 @@ tools:
 adminTour:
     path: /adminTour
     controller: App\Controller\TourController::adminIndex
+
+tour:
+    path: /tour
+    controller: App\Controller\TourController::index
