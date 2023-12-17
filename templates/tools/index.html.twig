@@ -68,6 +68,28 @@
 									</td>
 								</td>
 							</tr>
+
+							<tr>
+								<td>Requests</td>
+								
+								<td
+									class="row">
+
+									<!-- formulaire pour demander la modification ou la suppression -->
+									
+										<form>
+											<button type="" class="btn btn-primary btn-sm" formaction="" title="Edit">
+												<i title="Edit">
+													<i class="fa fa-pencil"></i>
+													<a href = "{{path('adminTourRequest')}}" class="text-white">Check</a></button>
+												{# <input
+												type="hidden" name="_token" value="{{ csrf_token('action-item' ~ exam.id) }}"> #}
+											{#  ~     pour concaténer des chaines en twig #}
+											</form>
+										
+									</td>
+								</td>
+							</tr>
 					</tbody>
 
 				</table>

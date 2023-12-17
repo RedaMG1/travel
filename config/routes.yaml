@@ -27,3 +27,11 @@ tour:
 adminGallery:
     path: /adminGallery
     controller: App\Controller\GalleryController::adminIndex
+
+detailThanks:
+    path: /detailThanks
+    controller: App\Controller\DetailController::detailThanks
+
+adminTourRequest:
+    path: /adminTourRequest
+    controller: App\Controller\TourRequestController::adminIndex

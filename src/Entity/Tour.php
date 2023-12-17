@@ -44,10 +44,14 @@ class Tour
     #[ORM\OneToMany(mappedBy: 'tour', targetEntity: Gallery::class)]
     private Collection $galleries;
 
+    #[ORM\OneToMany(mappedBy: 'tour', targetEntity: TourRequest::class)]
+    private Collection $tourRequests;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
         $this->galleries = new ArrayCollection();
+        $this->tourRequests = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -174,6 +178,36 @@ class Tour
             // set the owning side to null (unless already changed)
             if ($gallery->getTour() === $this) {
                 $gallery->setTour(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TourRequest>
+     */
+    public function getTourRequests(): Collection
+    {
+        return $this->tourRequests;
+    }
+
+    public function addTourRequest(TourRequest $tourRequest): static
+    {
+        if (!$this->tourRequests->contains($tourRequest)) {
+            $this->tourRequests->add($tourRequest);
+            $tourRequest->setTour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTourRequest(TourRequest $tourRequest): static
+    {
+        if ($this->tourRequests->removeElement($tourRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($tourRequest->getTour() === $this) {
+                $tourRequest->setTour(null);
             }
         }
 

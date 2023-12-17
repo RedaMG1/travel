@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\TourRequestRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\Expr\Func;
 
 #[ORM\Entity(repositoryClass: TourRequestRepository::class)]
 class TourRequest
@@ -41,6 +43,13 @@ class TourRequest
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tourRequests')]
+    private ?Tour $tour = null;
+
+    public function __construct()
+    {
+        $this->created_at = new DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +159,18 @@ class TourRequest
     public function setCreatedAt(\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getTour(): ?Tour
+    {
+        return $this->tour;
+    }
+
+    public function setTour(?Tour $tour): static
+    {
+        $this->tour = $tour;
 
         return $this;
     }

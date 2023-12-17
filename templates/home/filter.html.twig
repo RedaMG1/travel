@@ -13,7 +13,7 @@
 						<div class="blocks-destination-block d-flex flex-column">
 							<img src="{{ asset('assets/images/' ~ tour.image) }}" alt="Tour Image" class="img-fluid">
 							<div class="d-flex justify-content-between align-items-center mt-4">
-								<h5 class="mb-0 text-primary">{{ tour.name }}</h5>
+								<h5 class="mb-0 text-primary"><a href="{{ path('detail_display',{id:tour.id}) }}">{{ tour.name }}</a></h5>
 								<h5 class="mb-0">{{ tour.day }}
 									days</h5>
 							</div>
