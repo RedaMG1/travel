@@ -35,3 +35,11 @@ detailThanks:
 adminTourRequest:
     path: /adminTourRequest
     controller: App\Controller\TourRequestController::adminIndex
+
+contact:
+    path: /contact
+    controller: App\Controller\ContactController::index
+
+contactThanks:
+    path: /contactThanks
+    controller: App\Controller\ContactController::contactThanks

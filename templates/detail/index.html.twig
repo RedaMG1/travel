@@ -57,7 +57,7 @@
 				class="col-md-6 contact-form">
 				<!-- Added contact-form class -->
 				<h2>Contact Us</h2>
-
+				{{getTour.name}}
 				{{ form_start(form) }}
 				<div class="form-row">
 					<div
@@ -116,7 +116,7 @@
 					{{ form_row(form.message) }}
 					{# <textarea class="form-control" id="message" name="message" rows="4" placeholder="Type your message here" required></textarea> #}
 				</div>
-	
+
 				{# <button type="submit" class="btn btn-primary">Send</button> #}
 				{{ form_end(form) }}
 			</div>

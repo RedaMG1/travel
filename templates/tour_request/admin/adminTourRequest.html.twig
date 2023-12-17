@@ -25,11 +25,7 @@
 					<th class="col-md-1">Created_at</th>
 					<th class="col-md-1">Tour</th>
 
-					<th class="col-md-6">Actions<span class="pull-right">
-							<a href="{{ path('create_tour')}}" class="btn btn-primary btn-sm">
-								<i class="fa fa-save"></i>
-								Add a new Tour</a>
-						</span>
+					<th class="col-md-6">Actions<span class="pull-right"></span>
 					</th>
 
 				</tr>
@@ -75,11 +71,9 @@
 									</div>
 								</td>
                                 
-                                
-                                {# <td>{{ tourRequest.tour.}}</td> #}
-								<td>{{ tourRequest.createdAt | date('Y-m-d') }}</td>
-
-
+                                <td>{{ tourRequest.createdAt | date('Y-m-d') }}</td>
+                                <td>{{ tourRequest.tour.name}}</td>
+								
 								<td
 									class="row">
 
