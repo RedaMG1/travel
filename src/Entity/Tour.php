@@ -47,11 +47,15 @@ class Tour
     #[ORM\OneToMany(mappedBy: 'tour', targetEntity: TourRequest::class)]
     private Collection $tourRequests;
 
+    #[ORM\OneToMany(mappedBy: 'tour', targetEntity: DayInfo::class)]
+    private Collection $dayInfos;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
         $this->galleries = new ArrayCollection();
         $this->tourRequests = new ArrayCollection();
+        $this->dayInfos = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -208,6 +212,36 @@ class Tour
             // set the owning side to null (unless already changed)
             if ($tourRequest->getTour() === $this) {
                 $tourRequest->setTour(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DayInfo>
+     */
+    public function getDayInfos(): Collection
+    {
+        return $this->dayInfos;
+    }
+
+    public function addDayInfo(DayInfo $dayInfo): static
+    {
+        if (!$this->dayInfos->contains($dayInfo)) {
+            $this->dayInfos->add($dayInfo);
+            $dayInfo->setTour($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDayInfo(DayInfo $dayInfo): static
+    {
+        if ($this->dayInfos->removeElement($dayInfo)) {
+            // set the owning side to null (unless already changed)
+            if ($dayInfo->getTour() === $this) {
+                $dayInfo->setTour(null);
             }
         }
 

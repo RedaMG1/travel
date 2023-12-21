@@ -43,3 +43,7 @@ contact:
 contactThanks:
     path: /contactThanks
     controller: App\Controller\ContactController::contactThanks
+
+adminDayInfo:
+    path: /adminDayInfo
+    controller: App\Controller\DayInfoController::adminIndexTour

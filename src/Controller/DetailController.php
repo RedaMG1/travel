@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tour;
 use App\Entity\TourRequest;
 use App\Form\TourRequestType;
+use App\Repository\DayInfoRepository;
 use App\Repository\GalleryRepository;
 use App\Repository\TourRepository;
 use App\Repository\TourRequestRepository;
@@ -34,7 +35,7 @@ class DetailController extends AbstractController
         Tour $tour,
         Request $request,
         EntityManagerInterface $manager,
-        GalleryRepository $galleryRepository
+        GalleryRepository $galleryRepository,DayInfoRepository $dayInfoRepository,
     ): Response {
         $tours = $tourRepository->findBy(['id' => $id]);
         $gallerys = $galleryRepository->findBy(['tour' => $id]);
@@ -54,9 +55,6 @@ class DetailController extends AbstractController
             $email = $contact->getEmail();
             $content = $contact->getMessage();
             $subject = " Detail";
-
-
-
             $email = (new Email())
 
                 ->from($email)
@@ -67,30 +65,35 @@ class DetailController extends AbstractController
                 //->priority(Email::PRIORITY_HIGH)
                 ->subject($subject)
                 ->text(
-                    'email : '.$email.' '.
-                    'adult : '.$contact->getAdult().' '.
-                    'country : '.$contact->getCountry().' '.
-                    'message : '.$contact->getMessage().' '
+                    'email : ' . $email . ' ' .
+                        'adult : ' . $contact->getAdult() . ' ' .
+                        'country : ' . $contact->getCountry() . ' ' .
+                        'message : ' . $contact->getMessage() . ' '
                 );
             // ->html('<p>See Twig integration for better HTML integration!</p>');
             $mailer->send($email);
             return $this->redirectToRoute('detailThanks');
         }
+
+        $dayInfos = $dayInfoRepository->findBy(['tour'=>$id]);
+        $tour = $tourRepository->findOneBy(['id'=>$id]);
         return $this->render('detail/index.html.twig', [
             'tours' => $tours,
             'gallerys' => $gallerys,
             'button' => 'Submit',
+            'dayInfos' => $dayInfos,
             'getTour' => $getTour,
+            'tour'=>$tour,
             'form' => $form->createView(),
         ]);
     }
 
 
+ 
 
     #[Route('/detail/request/sent', name: 'detail_thanks')]
     public function detailThanks(): Response
     {
-
         return $this->render('detail/thanks.html.twig', []);
     }
 }
