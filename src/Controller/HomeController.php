@@ -22,6 +22,7 @@ class HomeController extends AbstractController
     #[Route('/filter/{name}', name: 'tour_filter')]
     public function filter(TourRepository $tourRepository,string $name): Response
     {
+        
         $tours = $tourRepository->findByName($name);
         return $this->render('home/filter.html.twig', [
             'tours'=>$tours,

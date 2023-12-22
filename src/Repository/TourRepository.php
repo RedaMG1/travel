@@ -55,4 +55,16 @@ class TourRepository extends ServiceEntityRepository
         ->getResult();
         
     }
+
+    // public function findByName($name,$price)
+    // {
+    //     return $this->createQueryBuilder('q')
+    //     ->where('q.name LIKE :name')
+    //     ->andWhere('q.price > :price')
+    //     ->setParameter('name', '%'.$name.'%')
+    //     ->setParameter('price', $price)
+    //     ->getQuery()
+    //     ->getResult();
+        
+    // }
 }

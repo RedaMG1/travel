@@ -19,7 +19,7 @@ class TourController extends AbstractController
     #[Route('/tour', name: 'app_tour')]
     public function index(TourRepository $tourRepository): Response
     {
-        $tours = $tourRepository->findBy(['online'=>1]);
+        $tours = $tourRepository->findBy(['online' => 1]);
         return $this->render('tour/index.html.twig', [
             'tours' => $tours,
         ]);
@@ -39,7 +39,6 @@ class TourController extends AbstractController
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
-
 
         return $this->render('tour/admin/adminTours.html.twig', [
             'tours' => $tours,
@@ -100,7 +99,7 @@ class TourController extends AbstractController
             $manager->persist($tour);
             $manager->flush();
             // dd($form->getData($product));
-            $this->addFlash('success', 'the tour '.$id.' is edited successfully!');
+            $this->addFlash('success', 'the tour ' . $id . ' is edited successfully!');
             return $this->redirectToRoute('adminTour');
         }
         return $this->render('tour/admin/edit.html.twig', [

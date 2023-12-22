@@ -20,7 +20,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'Enter tour name',
                     'class' => 'form-control',
                     'id' => 'name'
                 ]
@@ -29,7 +29,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'Enter tour price',
                     'class' => 'form-control',
 
                 ]
@@ -38,7 +38,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'Enter tour description ',
                     'class' => 'form-control',
 
                 ]
@@ -47,7 +47,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'Enter tour location',
                     'class' => 'form-control',
 
                 ]
@@ -56,7 +56,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'for how many days ?',
                     'class' => 'form-control',
 
                 ]
@@ -65,7 +65,7 @@ class TourType extends AbstractType
                 'required' => true,
 
                 'attr' => [
-                    'placeholder' => 'Enter your address',
+                    'placeholder' => 'Enter your image name',
                     'class' => 'form-control',
 
                 ]
