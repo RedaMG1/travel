@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Tour;
+use App\Entity\TourRequest;
 use App\Form\TourType;
+use App\Repository\DayInfoRepository;
+use App\Repository\GalleryRepository;
 use App\Repository\TourRepository;
+use App\Repository\TourRequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -114,14 +118,27 @@ class TourController extends AbstractController
     public function delete(
         TourRepository $tourRepository,
         int $id,
-        Request $request,
+        Request $request,TourRequestRepository $tourRequestRepository,
         EntityManagerInterface $manager,
-        Tour $tour,
+        Tour $tour,GalleryRepository $galleryRepository,DayInfoRepository $dayInfoRepository,
         AuthorizationCheckerInterface $authorizationChecker
     ): Response {
         if (!$authorizationChecker->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
             return $this->render('access_denied.html.twig');
+        }
+        $gallerys = $galleryRepository->findBy(['tour'=>$id]);
+        $dayInfos = $dayInfoRepository->findBy(['tour'=>$id]);
+        $tourRequests = $tourRequestRepository->findBy(['tour'=>$id]);
+        
+        foreach ($gallerys as $gallery) {
+            $manager->remove($gallery);
+        }
+        foreach ($dayInfos as $dayInfo) {
+            $manager->remove($dayInfo);
+        }
+        foreach ($tourRequests as $tourRequest) {
+            $manager->remove($tourRequest);
         }
         $manager->remove($tour);
         $manager->flush();
