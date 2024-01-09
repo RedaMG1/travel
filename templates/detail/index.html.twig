@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="container mt-5">
 		<h1 class="text-center mb-4">
-				{{ tour.name }}
+			{{ tour.name }}
 		</h1>
 		<p class="lead text-center mb-4">
 			Explore the beauty through our gallery. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -128,22 +128,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="container mt-5">
-		<!-- Your existing content -->
 
-		<!-- New Bootstrap Section -->
-			<div class="row mt-5"> <div class="col-md-12">
-				<h2 class="text-primary text-center">Details about : {{ tour.name }} days</h2>
-			</div>
-		</div>
-		{% for key, dayInfo in dayInfos %}
-			<div class="row my-4">
-				<div class="col-md-8">
-					<h4 class="font-weight-bold">{{ dayInfo.title }}</h4>
-					<p class="lead">{{ dayInfo.description }}</p>
+	<div class="container">
+
+		<h2>{{ tour.name }}</h2>
+
+		<div class="list-group">
+			{% for key, dayInfo in dayInfos %}
+				<div class="row my-4">
+					<div class="col-md-8">
+						<h4 class="font-weight-bold">{{ dayInfo.title }}</h4>
+						<a href="#" class="list-group-item list-group-item-success">{{ dayInfo.description }}</a>
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		</div>
+
 	</div>
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -225,5 +225,7 @@ $('#imageModal').modal('show');
 			object-fit: cover; /* Ensure that the image covers the specified dimensions */
 			width: 100%; /* Ensure the width takes up the full container */
 		}
+
+		
 	</style>
 {% endblock %}
