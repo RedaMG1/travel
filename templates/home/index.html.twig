@@ -11,14 +11,15 @@
 		<div class="container filter-container">
 			<form id="filterForm">
 				<div class="form-row">
-					<div class="form-group col-md-10">
+					<div class="form-group col-md-7">
 						<label for="destination">Destination</label>
 						<input type="text" class="form-control" id="destination" name="destination">
 					</div>
+					
 					{# <div class="form-group col-md-4">
-																															<label for="minPrice">Max price</label>
-																															<input type="number" class="form-control" id="minPrice" name="minPrice">
-																														</div> #}
+																																														<label for="minPrice">Max price</label>
+																																														<input type="number" class="form-control" id="minPrice" name="minPrice">
+																																													</div> #}
 
 					<div class="form-group col-md-2 mt-4">
 						<button type="submit" class="btn btn-primary" id="searchButton">Search</button>
@@ -37,18 +38,30 @@
 						<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
 					</div>
 				</div>
-				{# <div class="col-md-4">
-																									<div
-																										class="search-bar-block">
-																										<!-- Add your search bar content here -->
-																										<div class="input-group">
-																											<input type="text" class="form-control" placeholder="Search...">
-																											<div class="input-group-append">
-																												<button class="btn btn-secondary" type="button">Go</button>
-																											</div>
-																										</div>
-																									</div>
-																								</div> #}
+				<div class="col-md-4">
+					<form id="filterForm">
+						<div class="form-row">
+							
+							<div class="form-group col-md-5">
+								<label for="category">Category</label>
+								<select class="form-control" id="category" name="category">
+									<option value="beach">Beach</option>
+									<option value="mountain">Mountain</option>
+
+									<!-- Add more options as needed -->
+								</select>
+							</div>
+							{# <div class="form-group col-md-4">
+																																																<label for="minPrice">Max price</label>
+																																																<input type="number" class="form-control" id="minPrice" name="minPrice">
+																																															</div> #}
+
+							<div class="form-group col-md-2 mt-4">
+								<button type="submit" class="btn btn-primary" id="searchButton">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -181,7 +194,7 @@
 				</div>
 
 				<!-- Second Carousel -->
-				
+
 
 			</div>
 
@@ -229,7 +242,7 @@
 		<h1 class="text-center mb-4">About Us</h1>
 		<p class="lead text-center mb-4">
 			Welcome to our travel agency. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod accumsan ligula,tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
-																																																																																			            sit amet tempus velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm . velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
+																																																																																												            sit amet tempus velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm . velit posuere at. Quisque tincidunt odio nec mauris aliquet, ac fermentum dui malesuada. e tincidunt odio nec mauris aliquet, ac ferm
 		</p>
 	</div>
 </div></div><style>
@@ -337,11 +350,10 @@ label {
 	object-fit: cover; /* Maintain aspect ratio for images */
 }
 .carousel-inner img {
-    max-height: 250px; /* Set the maximum height for consistency */
-    width: auto; /* Ensure the width adjusts proportionally */
-    margin: auto; /* Center the image within the carousel item */
-  }
-</style><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script><script>
+	max-height: 250px; /* Set the maximum height for consistency */
+	width: auto; /* Ensure the width adjusts proportionally */
+	margin: auto; /* Center the image within the carousel item */
+}</style><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script><script>
 $(document).ready(function () {
 $('#filterForm').submit(function (e) {
 e.preventDefault();

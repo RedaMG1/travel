@@ -5,15 +5,18 @@
 
 {% block body %}
 	<br><div class="text-center mb-4">
-		<h2 style="color: blue;">Here's your searched tours </h2><br>
+		<h2 style="color: blue;">Here's your searched tours
+		</h2><br>
 		<div class="container">
 			<div class="row">
-				{% for key, tour in tours %}
+				{% for key, tour in toursType %}
 					<div class="col-md-4">
 						<div class="blocks-destination-block d-flex flex-column">
 							<img src="{{ asset('assets/images/' ~ tour.image) }}" alt="Tour Image" class="img-fluid">
 							<div class="d-flex justify-content-between align-items-center mt-4">
-								<h5 class="mb-0 text-primary"><a href="{{ path('detail_display',{id:tour.id}) }}">{{ tour.name }}</a></h5>
+								<h5 class="mb-0 text-primary">
+									<a href="{{ path('detail_display',{id:tour.id}) }}">{{ tour.name }}</a>
+								</h5>
 								<h5 class="mb-0">{{ tour.day }}
 									days</h5>
 							</div>
@@ -35,5 +38,5 @@
 			</div>
 		</div>
 	</div>
-    
+	
 {% endblock %}

@@ -21,41 +21,47 @@ class TourRepository extends ServiceEntityRepository
         parent::__construct($registry, Tour::class);
     }
 
-//    /**
-//     * @return Tour[] Returns an array of Tour objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Tour[] Returns an array of Tour objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('t.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Tour
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Tour
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 
     public function findByName($name)
     {
         return $this->createQueryBuilder('q')
-        ->where('q.name LIKE :name')
-        ->setParameter('name', '%'.$name.'%')
-        ->getQuery()
-        ->getResult();
-        
+            ->where('q.name LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->getQuery()
+            ->getResult();
     }
-
+    public function findByType($type)
+    {
+        return $this->createQueryBuilder('q')
+            ->where('q.type = :type')
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getResult();
+    }
     // public function findByName($name,$price)
     // {
     //     return $this->createQueryBuilder('q')
@@ -65,6 +71,6 @@ class TourRepository extends ServiceEntityRepository
     //     ->setParameter('price', $price)
     //     ->getQuery()
     //     ->getResult();
-        
+
     // }
 }

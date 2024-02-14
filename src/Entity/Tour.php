@@ -50,6 +50,9 @@ class Tour
     #[ORM\OneToMany(mappedBy: 'tour', targetEntity: DayInfo::class)]
     private Collection $dayInfos;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $type = null;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -244,6 +247,18 @@ class Tour
                 $dayInfo->setTour(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(?int $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
